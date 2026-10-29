@@ -1,18 +1,18 @@
-# m-MIK Landing v1
+# MIK Official Gateway
 
-A lightweight landing page for m-MIK designed for GitHub Pages deployment.
+Buildless landing page for MIK, published through GitHub Pages.
 
-## Structure
-- `index.html` — main landing page
-- `assets/` — logo assets
+## Official destinations
+- Global brand information and shopping: https://www.mikbuttoncover.com
+- Korea online store: https://mik-store.com
+- Instagram: https://www.instagram.com/mikbuttoncovers/
 
-## Suggested GitHub Pages flow
-1. Create a new GitHub repository
-2. Upload all files in this folder
-3. Enable GitHub Pages from the main branch root
-4. Point your Gabia-managed domain to GitHub Pages
+## Features
+- Korean and English interface
+- Mobile-first channel navigation
+- M’Or direction and Heritouch art jewelry collection
+- Subtle pointer tilt and scroll parallax on photographs
+- Respects reduced-motion preferences
 
-## Current destinations
-- MIK → https://www.mikbuttoncover.com
-- Heritouch → In Preparation
-- M'Or → In Preparation
+## Deployment
+Serve index.html and assets/ from the repository root. Preserve CNAME for the existing custom domain. No build step or external JavaScript dependencies are required.
