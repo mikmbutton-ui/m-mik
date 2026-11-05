@@ -1,0 +1,487 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HERITOUCH · Tradition, in motion</title>
+<meta name="description" content="Heritouch by MIK. Korean heritage, reinterpreted as art jewelry. Tradition, in motion.">
+<meta property="og:title" content="HERITOUCH · Tradition, in motion">
+<meta property="og:description" content="Heritage × Touch. An art jewelry line by MIK, Seoul.">
+<meta property="og:image" content="assets/heritouch-main.jpg">
+<meta name="theme-color" content="#0A0A09">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,800;1,6..96,400;1,6..96,500&amp;family=Noto+Sans+KR:wght@400;500;700&amp;family=Noto+Serif+KR:wght@400;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F2EFE8}
+a{color:#111}a:hover{color:#C0281E}
+@keyframes mikSpin{to{transform:rotate(360deg)}}
+@keyframes mikFloat{0%,100%{transform:translate(-50%,-50%) translateY(0)}50%{transform:translate(-50%,-50%) translateY(-10px)}}
+@keyframes mikMarquee{to{transform:translateX(-50%)}}
+.mik-spin{transform-origin:0 0;animation:mikSpin 90s linear infinite}
+.mik-spin-rev{transform-origin:0 0;animation:mikSpin 140s linear infinite reverse}
+.mik-float{animation:mikFloat 7s ease-in-out infinite}
+.mik-track{animation:mikMarquee 38s linear infinite}
+.mik-card{transition:transform .5s cubic-bezier(.2,.7,.2,1),box-shadow .5s}
+.mik-card:hover{transform:translateY(-6px);box-shadow:0 24px 48px rgba(17,17,17,.12)}
+@keyframes mikRise{from{opacity:0;transform:translateY(.22em) scale(1.04);filter:blur(16px);letter-spacing:.14em}to{opacity:1;transform:none;filter:blur(0);letter-spacing:-.025em}}
+@keyframes mikFade{from{opacity:0}to{opacity:1}}
+.mik-rise{animation:mikRise 2s cubic-bezier(.16,1,.3,1) .35s both}
+.mik-fade{animation:mikFade 1.6s ease 1.4s both}
+.mik-link{text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:2px}
+@media (prefers-reduced-motion:reduce){.mik-rise,.mik-fade,.mik-spin,.mik-spin-rev,.mik-float,.mik-track{animation:none}}
+</style>
+<style>html,body{background:#0A0A09}#ht-press[hidden]{display:none!important}</style>
+</head>
+<body>
+<div style="width:100%;background:#0A0A09;color:#F2EFE8;font-family:'Noto Sans KR',system-ui,sans-serif;overflow:hidden">
+
+<section id="ht-hero" style="position:relative;min-height:max(640px,100vh);box-sizing:border-box;padding:28px clamp(16px,4vw,56px) 40px;display:flex;flex-direction:column;justify-content:space-between;touch-action:pan-y;background:#0A0A09;color:#F2EFE8">
+<img id="ht-img" fetchpriority="high" src="assets/heritouch-main.jpg" alt="Heritouch ring and button cover pieces in silver and gold, arranged on green fluorite and a stone pedestal" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 56%;z-index:0;transform:scale(1.06);will-change:transform">
+<div aria-hidden="true" style="position:absolute;inset:0;z-index:0;background:linear-gradient(180deg,rgba(0,0,0,.35) 0%,rgba(0,0,0,0) 28%,rgba(0,0,0,0) 55%,rgba(0,0,0,.55) 100%)"></div>
+<canvas id="ht-canvas" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;mix-blend-mode:screen;display:block"></canvas>
+<header class="mik-fade" style="position:relative;z-index:3;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-start;gap:16px">
+<p style="margin:0;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#E3DED3;line-height:1.7">Heritage × Touch</p>
+<p style="margin:0;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#BDB7AB">Touch to color</p>
+<a href="https://m-mik.com/" style="font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#E3DED3;text-decoration:none;min-height:44px;display:inline-flex;align-items:flex-start">Explore MIK</a>
+</header>
+
+<div style="position:relative;z-index:1;flex:1;display:flex;align-items:flex-end;justify-content:center;min-height:420px;padding-bottom:12px;mix-blend-mode:difference">
+<h1 id="ht-title" class="mik-rise" style="margin:0;font-family:'Bodoni Moda',serif;font-weight:800;font-size:clamp(54px,13.8vw,250px);line-height:.84;letter-spacing:-.025em;color:#FFFFFF;text-align:center;white-space:nowrap">HERITOUCH</h1>
+</div>
+<canvas id="ht-overlay" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;z-index:2;pointer-events:none;display:block"></canvas>
+
+<div class="mik-fade" style="position:relative;z-index:3;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:20px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#BDB7AB">
+<p style="margin:0;max-width:360px;line-height:1.7"><span style="font-family:'Bodoni Moda',serif;font-style:italic;font-size:18px;letter-spacing:0;text-transform:none;color:#FFFFFF">Tradition, in motion.</span><br><span style="font-family:'Noto Serif KR',serif;letter-spacing:.04em;text-transform:none;font-size:12px">전통의 깊이와 현대의 감성이 만나는 곳</span></p>
+<button type="button" id="ht-press-open" aria-haspopup="dialog" aria-label="Featured in The New York Times, November 27, 2025. Open the press clipping" style="display:flex;flex-direction:column;align-items:center;gap:6px;background:none;border:0;padding:4px 8px;cursor:pointer;font:inherit;text-transform:uppercase;letter-spacing:.16em;font-size:11px;color:#E3DED3;min-height:44px;text-align:center">
+<span style="font-size:10px;letter-spacing:.28em">As featured in</span>
+<span style="font-family:'Bodoni Moda',serif;font-weight:500;font-size:22px;letter-spacing:0;text-transform:none;color:#FFFFFF">The New York Times</span>
+<span style="font-size:10px;letter-spacing:.2em">Nov. 27, 2025</span>
+</button>
+<a href="https://www.mikbuttoncover.com/collections/frontpage" class="mik-link" style="color:#F2EFE8;text-decoration:none;font-size:12px;letter-spacing:.24em;min-height:44px;display:inline-flex;align-items:center">Enter</a>
+</div>
+
+<div id="ht-press" hidden style="position:absolute;inset:0;z-index:10;background:rgba(6,6,5,.82);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;padding:24px 16px;box-sizing:border-box">
+<div id="ht-press-panel" role="dialog" aria-modal="true" aria-label="The New York Times, November 27, 2025" style="position:relative;width:100%;max-width:640px;max-height:100%;display:flex;flex-direction:column;background:#F2EFE8;color:#111;box-shadow:0 40px 80px rgba(0,0,0,.5)">
+<div style="display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 12px 12px 20px;border-bottom:1px solid #C9C3B6">
+<span style="font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#4E4A43">Press · Nov. 27, 2025</span>
+<button type="button" id="ht-press-close" aria-label="Close" style="width:44px;height:44px;display:inline-flex;align-items:center;justify-content:center;background:none;border:0;cursor:pointer;color:#111">
+<svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M2 2 L16 16 M16 2 L2 16" stroke="currentColor" stroke-width="1.6" fill="none"></path></svg>
+</button>
+</div>
+<div style="overflow:auto;flex:1;min-height:0">
+<img src="assets/nyt-2025-11-27.jpg" alt="Press clipping of The New York Times article 'KPop Demon Hunters' Makes Korean Jewelry a Trendy Gift, featuring MIK and Heritouch Line button covers with tiger and magpie motifs" style="display:block;width:100%;height:auto">
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:center;padding:16px 20px;border-top:1px solid #C9C3B6">
+<span style="font-size:12px;line-height:1.6;color:#4E4A43">원문은 뉴욕타임즈 사이트에서 이어집니다</span>
+<a href="https://m.site.naver.com/1Ys5W" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;min-height:44px;padding:0 22px;background:#111;color:#F2EFE8;text-decoration:none;font-size:12px;letter-spacing:.16em;text-transform:uppercase">Read the full story</a>
+</div>
+</div>
+</div>
+</section>
+
+
+</div>
+<script>
+class DCLogic {
+  constructor() { this.props = {"gold": "#C9A45C", "accent": "#C0281E", "ink": "#C9A45C", "fluid": true, "multicolor": true, "distortion": 0.07, "titleBlend": "difference", "trail": 0.6, "ambient": true, "titleGlow": true}; this.state = {}; }
+  setState(o) { Object.assign(this.state, o); if (this.onState) this.onState(); }
+}
+class Component extends DCLogic {
+  constructor(...args) {
+    super(...args);
+    this.m = { x: .5, y: .5, sx: .5, sy: .5, px: .5, py: .5, last: -1e9 };
+    this.visible = true;
+    this.setCanvas = (el) => {
+      if (el === this.cv) return;
+      this.cv = el;
+      if (el && !this.gl) requestAnimationFrame(() => this.boot());
+    };
+    this.setHero = (el) => { this.hero = el; };
+    this.setImg = (el) => { this.img = el; };
+    this.setTitle = (el) => { this.title = el; };
+    this.setOverlay = (el) => {
+      if (el === this.oc) return;
+      this.oc = el;
+      if (el && this.gl && !this.og) this.bootOverlay();
+    };
+    this.par = { x: 0, y: 0 };
+    this.state = { press: false };
+    this.openPress = (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ press: true }); };
+    this.closePress = (e) => { if (e && e.stopPropagation) e.stopPropagation(); this.setState({ press: false }); };
+    this.stopPress = (e) => { if (e && e.stopPropagation) e.stopPropagation(); };
+    this.onMove = (e) => {
+      if (!this.cv) return;
+      const r = this.cv.getBoundingClientRect();
+      if (!r.width) return;
+      this.m.x = (e.clientX - r.left) / r.width;
+      this.m.y = 1 - (e.clientY - r.top) / r.height;
+      if (performance.now() - this.m.last > 400) { this.m.sx = this.m.px = this.m.x; this.m.sy = this.m.py = this.m.y; }
+      this.m.last = performance.now();
+    };
+  }
+
+  componentDidMount() { if (this.cv && !this.gl) this.boot(); }
+
+  componentWillUnmount() {
+    cancelAnimationFrame(this.raf);
+    if (this.io) this.io.disconnect();
+    if (this.gl) { const ext = this.gl.getExtension('WEBGL_lose_context'); if (ext) ext.loseContext(); }
+    if (this.og) { const ext2 = this.og.gl.getExtension('WEBGL_lose_context'); if (ext2) ext2.loseContext(); }
+    this.og = null;
+    this.gl = null;
+  }
+
+  hex(h) {
+    const s = (h || '#C9A45C').replace('#', '');
+    const n = parseInt(s.length === 3 ? s.split('').map(c => c + c).join('') : s, 16);
+    return [(n >> 16 & 255) / 255, (n >> 8 & 255) / 255, (n & 255) / 255];
+  }
+
+  boot() {
+    const cv = this.cv;
+    if (!cv || this.gl) return;
+    const gl = cv.getContext('webgl', { alpha: false, antialias: false, premultipliedAlpha: false, preserveDrawingBuffer: false });
+    if (!gl) return;
+    this.gl = gl;
+    const vs = 'attribute vec2 p;varying vec2 v;void main(){v=p*.5+.5;gl_Position=vec4(p,0.,1.);}';
+    const common = 'precision mediump float;varying vec2 v;float h(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}float n(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);return mix(mix(h(i),h(i+vec2(1.,0.)),f.x),mix(h(i+vec2(0.,1.)),h(i+vec2(1.,1.)),f.x),f.y);}';
+    const sim = common + 'uniform sampler2D prev;uniform vec2 a,b,px;uniform float rad,str,decay,t,asp;' +
+      'float seg(vec2 p,vec2 a,vec2 b){vec2 pa=p-a,ba=b-a;float k=clamp(dot(pa,ba)/max(dot(ba,ba),1e-6),0.,1.);return length(pa-ba*k);}' +
+      'void main(){vec2 q=v;vec2 o=vec2(n(q*5.+t*.12)-.5,n(q*5.+19.7-t*.1)-.5)*.007;' +
+      'float c=texture2D(prev,q+o).r*.52;vec2 s=px*1.6;' +
+      'c+=texture2D(prev,q+o+vec2(s.x,0.)).r*.12;c+=texture2D(prev,q+o-vec2(s.x,0.)).r*.12;' +
+      'c+=texture2D(prev,q+o+vec2(0.,s.y)).r*.12;c+=texture2D(prev,q+o-vec2(0.,s.y)).r*.12;' +
+      'c=c*decay-.0035;vec2 P=vec2(q.x*asp,q.y),A=vec2(a.x*asp,a.y),B=vec2(b.x*asp,b.y);' +
+      'float d=seg(P,A,B)+ (n(q*40.+t)-.5)*rad*.35;c+=str*smoothstep(rad,rad*.15,d);gl_FragColor=vec4(clamp(c,0.,1.),0.,0.,1.);}';
+    const disp = common + 'uniform sampler2D s,photo;uniform vec3 ink;uniform vec2 px,isc,ioff;uniform float t,multi,ready,dist,zoom;' +
+      'void main(){vec2 q=v;float g=texture2D(s,q).r;' +
+      'float gx=texture2D(s,q+vec2(px.x*3.,0.)).r-texture2D(s,q-vec2(px.x*3.,0.)).r;' +
+      'float gy=texture2D(s,q+vec2(0.,px.y*3.)).r-texture2D(s,q-vec2(0.,px.y*3.)).r;' +
+      'vec2 d=vec2(gx,gy);vec3 a=vec3(texture2D(s,q+d*.035).r,g,texture2D(s,q-d*.035).r);a=smoothstep(.04,.85,a);' +
+      'float k=fract(n(q*1.6+vec2(t*.07,-t*.05))*1.4+t*.035);' +
+      'vec3 c0=vec3(.80,.16,.12),c1=vec3(.12,.62,.55),c2=vec3(.85,.66,.30),c3=vec3(.20,.33,.85);' +
+      'float f=k*4.;vec3 pal=f<1.?mix(c0,c1,f):f<2.?mix(c1,c2,f-1.):f<3.?mix(c2,c3,f-2.):mix(c3,c0,f-3.);' +
+      'vec3 tint=multi>.5?pal:ink;vec3 col;' +
+      'if(ready>.5){vec2 w=vec2(n(q*3.+t*.15)-.5,n(q*3.+7.1-t*.13)-.5)*.004;vec2 dd=d*dist+w+(q-.5)*g*dist*.25;' +
+      'vec2 u=(q-.5)*isc/zoom+ioff;' +
+      'col=vec3(texture2D(photo,u+dd*1.4).r,texture2D(photo,u+dd).g,texture2D(photo,u+dd*.6).b);' +
+      'col=1.-(1.-col)*(1.-tint*a*.8);' +
+      'float vg=smoothstep(.35,1.05,length((q-.5)*vec2(1.15,1.)));col*=1.-vg*.55;' +
+      'col+=(h(q*vec2(1311.,977.)+fract(t))-.5)*.07;}' +
+      'else{col=tint*a*1.05+(h(q*vec2(1311.,977.)+fract(t))-.5)*.08*a.g;}' +
+      'gl_FragColor=vec4(col,1.);}';
+    const mk = (fs) => {
+      const p = gl.createProgram();
+      [[gl.VERTEX_SHADER, vs], [gl.FRAGMENT_SHADER, fs]].forEach(([type, src]) => {
+        const sh = gl.createShader(type); gl.shaderSource(sh, src); gl.compileShader(sh); gl.attachShader(p, sh);
+      });
+      gl.bindAttribLocation(p, 0, 'p'); gl.linkProgram(p);
+      if (!gl.getProgramParameter(p, gl.LINK_STATUS)) return null;
+      const u = {}; const cnt = gl.getProgramParameter(p, gl.ACTIVE_UNIFORMS);
+      for (let i = 0; i < cnt; i++) { const info = gl.getActiveUniform(p, i); u[info.name] = gl.getUniformLocation(p, info.name); }
+      return { p, u };
+    };
+    this.vsSrc = vs; this.simSrc = sim;
+    this.ovSrc = common + 'uniform sampler2D s,mk;uniform vec3 ink;uniform float t,multi,on;' +
+      'void main(){vec2 q=v;float g=texture2D(s,q).r;vec4 M=texture2D(mk,q);float m=M.r,b=M.g;' +
+      'float e=smoothstep(.03,.75,g);' +
+      'float k=fract(n(q*1.6+vec2(t*.07,-t*.05))*1.4+t*.035);' +
+      'vec3 c0=vec3(.80,.16,.12),c1=vec3(.12,.62,.55),c2=vec3(.85,.66,.30),c3=vec3(.20,.33,.85);' +
+      'float f=k*4.;vec3 pal=f<1.?mix(c0,c1,f):f<2.?mix(c1,c2,f-1.):f<3.?mix(c2,c3,f-2.):mix(c3,c0,f-3.);' +
+      'vec3 tint=multi>.5?pal:ink;vec3 tb=mix(tint,vec3(1.),.3);' +
+      'float hu=fract(dot(q,vec2(1.7,1.1))+t*.06+g*1.2);vec3 pearl=.5+.5*cos(6.2831*(hu+vec3(0.,.33,.67)));' +
+      'vec3 pw=mix(vec3(1.),pearl,.28);' +
+      'vec3 c=e<.5?mix(tb,pw,e*2.):mix(pw,vec3(1.),(e-.5)*2.);' +
+      'float sp=step(.988,h(floor(q*vec2(520.,320.))+floor(t*10.)))*smoothstep(.4,.9,e);c=min(c+sp*.8,vec3(1.));' +
+      'float aL=m*smoothstep(0.,.3,e)*on;float aB=b*e*.6*on*(1.-m);vec3 bc=mix(pw,tint,.25);' +
+      'gl_FragColor=vec4(c*aL+bc*aB,clamp(aL+aB,0.,1.));}';
+    this.simP = mk(sim); this.dispP = mk(disp);
+    if (!this.simP || !this.dispP) { this.gl = null; return; }
+    const buf = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]), gl.STATIC_DRAW);
+    gl.enableVertexAttribArray(0); gl.vertexAttribPointer(0, 2, gl.FLOAT, false, 0, 0);
+    this.io = new IntersectionObserver((es) => { this.visible = es[0].isIntersecting; }, { threshold: 0 });
+    this.io.observe(cv);
+    this.cur = 0;
+    this.bootAt = performance.now();
+    this.m.sx = this.m.px = .06; this.m.sy = this.m.py = .3;
+    this.loadPhoto();
+    this.bootOverlay();
+    const loop = (t) => { this.raf = requestAnimationFrame(loop); this.frame(t); };
+    this.raf = requestAnimationFrame(loop);
+  }
+
+  loadPhoto() {
+    const gl = this.gl, src = this.img && this.img.getAttribute('src');
+    if (!gl || !src) return;
+    const im = new Image();
+    im.crossOrigin = 'anonymous';
+    im.onload = () => {
+      if (!this.gl) return;
+      try {
+        const tx = gl.createTexture(); gl.bindTexture(gl.TEXTURE_2D, tx);
+        gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
+        gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, im);
+        gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, false);
+        [gl.TEXTURE_MIN_FILTER, gl.TEXTURE_MAG_FILTER].forEach(k => gl.texParameteri(gl.TEXTURE_2D, k, gl.LINEAR));
+        [gl.TEXTURE_WRAP_S, gl.TEXTURE_WRAP_T].forEach(k => gl.texParameteri(gl.TEXTURE_2D, k, gl.CLAMP_TO_EDGE));
+        if (gl.getError() !== gl.NO_ERROR) throw new Error('tex');
+        this.photo = tx; this.iw = im.naturalWidth; this.ih = im.naturalHeight; this.photoAt = performance.now();
+      } catch (e) { this.photo = null; }
+    };
+    im.src = src;
+  }
+
+  mkProg(gl, fs) {
+    const p = gl.createProgram();
+    [[gl.VERTEX_SHADER, this.vsSrc], [gl.FRAGMENT_SHADER, fs]].forEach(([type, src]) => {
+      const sh = gl.createShader(type); gl.shaderSource(sh, src); gl.compileShader(sh); gl.attachShader(p, sh);
+    });
+    gl.bindAttribLocation(p, 0, 'p'); gl.linkProgram(p);
+    if (!gl.getProgramParameter(p, gl.LINK_STATUS)) return null;
+    const u = {}; const cnt = gl.getProgramParameter(p, gl.ACTIVE_UNIFORMS);
+    for (let i = 0; i < cnt; i++) { const info = gl.getActiveUniform(p, i); u[info.name] = gl.getUniformLocation(p, info.name); }
+    return { p, u };
+  }
+
+  bootOverlay() {
+    const oc = this.oc;
+    if (!oc || this.og || !this.vsSrc) return;
+    const gl = oc.getContext('webgl', { alpha: true, premultipliedAlpha: true, antialias: false });
+    if (!gl) return;
+    const o = { gl, cur: 0, fc: 0 };
+    o.simP = this.mkProg(gl, this.simSrc); o.outP = this.mkProg(gl, this.ovSrc);
+    if (!o.simP || !o.outP) return;
+    const buf = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]), gl.STATIC_DRAW);
+    gl.enableVertexAttribArray(0); gl.vertexAttribPointer(0, 2, gl.FLOAT, false, 0, 0);
+    this.og = o;
+  }
+
+  ovTargets(o, w, h) {
+    const gl = o.gl;
+    (o.tx || []).forEach(x => { gl.deleteTexture(x.t); gl.deleteFramebuffer(x.f); });
+    o.tx = [0, 1].map(() => {
+      const t = gl.createTexture(); gl.bindTexture(gl.TEXTURE_2D, t);
+      gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, w, h, 0, gl.RGBA, gl.UNSIGNED_BYTE, null);
+      [gl.TEXTURE_MIN_FILTER, gl.TEXTURE_MAG_FILTER].forEach(k => gl.texParameteri(gl.TEXTURE_2D, k, gl.LINEAR));
+      [gl.TEXTURE_WRAP_S, gl.TEXTURE_WRAP_T].forEach(k => gl.texParameteri(gl.TEXTURE_2D, k, gl.CLAMP_TO_EDGE));
+      const f = gl.createFramebuffer(); gl.bindFramebuffer(gl.FRAMEBUFFER, f);
+      gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, t, 0);
+      gl.clearColor(0, 0, 0, 1); gl.clear(gl.COLOR_BUFFER_BIT);
+      return { t, f };
+    });
+    o.simW = w; o.simH = h;
+  }
+
+  buildMask(W, H) {
+    const o = this.og, el = this.title, oc = this.oc;
+    if (!o || !el || !oc) return;
+    if (document.fonts && document.fonts.status !== 'loaded') return;
+    const r = el.getBoundingClientRect(), c = oc.getBoundingClientRect();
+    if (!c.width || !r.width) return;
+    const key = [W, H, Math.round(r.left - c.left), Math.round(r.top - c.top), Math.round(r.width)].join();
+    if (key === o.maskKey) return;
+    const sx = W / c.width;
+    const cs = getComputedStyle(el);
+    const size = parseFloat(cs.fontSize) * sx;
+    const mc = o.mc || (o.mc = document.createElement('canvas'));
+    mc.width = W; mc.height = H;
+    const ctx = mc.getContext('2d');
+    ctx.fillStyle = '#000'; ctx.fillRect(0, 0, W, H);
+    ctx.font = cs.fontWeight + ' ' + size + 'px ' + cs.fontFamily;
+    const ls = parseFloat(cs.letterSpacing);
+    if ('letterSpacing' in ctx) ctx.letterSpacing = (isNaN(ls) ? 0 : ls * sx) + 'px';
+    ctx.textAlign = 'center'; ctx.textBaseline = 'alphabetic';
+    const text = el.textContent.trim();
+    const mt = ctx.measureText(text);
+    const A = mt.fontBoundingBoxAscent || mt.actualBoundingBoxAscent || size * .8;
+    const D = mt.fontBoundingBoxDescent || mt.actualBoundingBoxDescent || size * .2;
+    let LH = parseFloat(cs.lineHeight) * sx;
+    if (isNaN(LH)) LH = size * .84;
+    const x = (r.left - c.left + r.width / 2) * sx;
+    const y = (r.top - c.top) * sx + (LH - (A + D)) / 2 + A;
+    ctx.fillStyle = '#f00'; ctx.fillText(text, x, y);
+    ctx.globalCompositeOperation = 'lighter';
+    ctx.filter = 'blur(' + Math.round(size * .07) + 'px)';
+    ctx.fillStyle = '#0f0'; ctx.fillText(text, x, y); ctx.fillText(text, x, y);
+    ctx.filter = 'none'; ctx.globalCompositeOperation = 'source-over';
+    const gl = o.gl;
+    if (!o.mask) o.mask = gl.createTexture();
+    gl.bindTexture(gl.TEXTURE_2D, o.mask);
+    gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
+    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, mc);
+    gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, false);
+    [gl.TEXTURE_MIN_FILTER, gl.TEXTURE_MAG_FILTER].forEach(k => gl.texParameteri(gl.TEXTURE_2D, k, gl.LINEAR));
+    [gl.TEXTURE_WRAP_S, gl.TEXTURE_WRAP_T].forEach(k => gl.texParameteri(gl.TEXTURE_2D, k, gl.CLAMP_TO_EDGE));
+    o.maskKey = key;
+  }
+
+  overlayFrame(P) {
+    const o = this.og, oc = this.oc;
+    if (!o || !oc) return;
+    const gl = o.gl;
+    if (oc.width !== P.W || oc.height !== P.H) { oc.width = P.W; oc.height = P.H; o.maskKey = null; }
+    if (o.simW !== P.sw || o.simH !== P.sh) this.ovTargets(o, P.sw, P.sh);
+    const src = o.tx[o.cur], dst = o.tx[1 - o.cur];
+    gl.bindFramebuffer(gl.FRAMEBUFFER, dst.f); gl.viewport(0, 0, P.sw, P.sh);
+    const S = o.simP; gl.useProgram(S.p);
+    gl.activeTexture(gl.TEXTURE0); gl.bindTexture(gl.TEXTURE_2D, src.t);
+    gl.uniform1i(S.u.prev, 0);
+    gl.uniform2f(S.u.a, P.ox, P.oy); gl.uniform2f(S.u.b, P.bx, P.by);
+    gl.uniform2f(S.u.px, 1 / P.sw, 1 / P.sh);
+    gl.uniform1f(S.u.rad, P.rad); gl.uniform1f(S.u.str, P.str); gl.uniform1f(S.u.decay, P.decay);
+    gl.uniform1f(S.u.t, P.t); gl.uniform1f(S.u.asp, P.asp);
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+    o.cur = 1 - o.cur;
+    gl.bindFramebuffer(gl.FRAMEBUFFER, null); gl.viewport(0, 0, P.W, P.H);
+    gl.clearColor(0, 0, 0, 0); gl.clear(gl.COLOR_BUFFER_BIT);
+    const since = P.now - (this.bootAt || 0);
+    if (since > 2500 && (o.fc++ % 20 === 0 || !o.mask)) this.buildMask(P.W, P.H);
+    if (!o.mask || this.props.titleGlow === false) return;
+    const O = o.outP; gl.useProgram(O.p);
+    gl.activeTexture(gl.TEXTURE0); gl.bindTexture(gl.TEXTURE_2D, dst.t); gl.uniform1i(O.u.s, 0);
+    gl.activeTexture(gl.TEXTURE1); gl.bindTexture(gl.TEXTURE_2D, o.mask); gl.uniform1i(O.u.mk, 1);
+    gl.activeTexture(gl.TEXTURE0);
+    gl.uniform3f(O.u.ink, P.ink[0], P.ink[1], P.ink[2]);
+    gl.uniform1f(O.u.multi, P.multi); gl.uniform1f(O.u.t, P.t);
+    gl.uniform1f(O.u.on, Math.min(1, Math.max(0, (since - 2500) / 1200)));
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+  }
+
+  makeTargets(w, h) {
+    const gl = this.gl;
+    (this.tx || []).forEach(o => { gl.deleteTexture(o.t); gl.deleteFramebuffer(o.f); });
+    this.tx = [0, 1].map(() => {
+      const t = gl.createTexture(); gl.bindTexture(gl.TEXTURE_2D, t);
+      gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, w, h, 0, gl.RGBA, gl.UNSIGNED_BYTE, null);
+      [gl.TEXTURE_MIN_FILTER, gl.TEXTURE_MAG_FILTER].forEach(k => gl.texParameteri(gl.TEXTURE_2D, k, gl.LINEAR));
+      [gl.TEXTURE_WRAP_S, gl.TEXTURE_WRAP_T].forEach(k => gl.texParameteri(gl.TEXTURE_2D, k, gl.CLAMP_TO_EDGE));
+      const f = gl.createFramebuffer(); gl.bindFramebuffer(gl.FRAMEBUFFER, f);
+      gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, t, 0);
+      gl.clearColor(0, 0, 0, 1); gl.clear(gl.COLOR_BUFFER_BIT);
+      return { t, f };
+    });
+    this.simW = w; this.simH = h;
+  }
+
+  frame(t) {
+    const gl = this.gl, cv = this.cv;
+    if (!gl || !cv || !this.visible || document.hidden) return;
+    const cw = cv.clientWidth, ch = cv.clientHeight;
+    if (!cw || !ch) return;
+    const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+    const W = Math.round(cw * dpr), H = Math.round(ch * dpr);
+    if (cv.width !== W || cv.height !== H) { cv.width = W; cv.height = H; }
+    const sw = Math.max(64, Math.round(cw / 2)), sh = Math.max(64, Math.round(ch / 2));
+    if (sw !== this.simW || sh !== this.simH) this.makeTargets(sw, sh);
+
+    const props = this.props, m = this.m, now = performance.now();
+    if (this.img && !(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches)) {
+      const live = now - m.last < 2400;
+      const gx = live ? (m.x - .5) : 0, gy = live ? (m.y - .5) : 0;
+      this.par.x += (gx - this.par.x) * .06; this.par.y += (gy - this.par.y) * .06;
+      this.img.style.transform = 'scale(1.06) translate3d(' + (-this.par.x * 22).toFixed(2) + 'px,' + (this.par.y * 16).toFixed(2) + 'px,0)';
+    }
+    let tx = m.x, ty = m.y, str;
+    const idle = now - m.last > 2400;
+    if (idle && props.ambient !== false) {
+      const s = t * .00042;
+      tx = .5 + .3 * Math.sin(s * 1.3) + .06 * Math.sin(s * 3.7);
+      ty = .5 + .22 * Math.sin(s * 2.1 + 1.2);
+    }
+    const intro = this.bootAt ? (now - this.bootAt) / 2200 : 1;
+    let introOn = false;
+    if (intro < 1 && now - m.last > 2400) {
+      const e = 1 - Math.pow(1 - intro, 2);
+      tx = .06 + .88 * e; ty = .3 + .08 * Math.sin(e * 7); introOn = true;
+    }
+    const ox = m.sx, oy = m.sy;
+    m.sx += (tx - m.sx) * .22; m.sy += (ty - m.sy) * .22;
+    const sp = Math.hypot(m.sx - ox, m.sy - oy);
+    if (introOn) str = .85;
+    else if (idle) str = props.ambient !== false ? .32 : 0;
+    else str = Math.min(.95, .18 + sp * 38);
+
+    const trail = props.trail ?? .6;
+    const decay = .955 + trail * .04;
+    const src = this.tx[this.cur], dst = this.tx[1 - this.cur];
+    gl.bindFramebuffer(gl.FRAMEBUFFER, dst.f); gl.viewport(0, 0, sw, sh);
+    const S = this.simP; gl.useProgram(S.p);
+    gl.activeTexture(gl.TEXTURE0); gl.bindTexture(gl.TEXTURE_2D, src.t);
+    gl.uniform1i(S.u.prev, 0);
+    gl.uniform2f(S.u.a, ox, oy); gl.uniform2f(S.u.b, m.sx, m.sy);
+    gl.uniform2f(S.u.px, 1 / sw, 1 / sh);
+    gl.uniform1f(S.u.rad, .045 + Math.min(sp * 1.4, .05));
+    gl.uniform1f(S.u.str, str); gl.uniform1f(S.u.decay, decay);
+    gl.uniform1f(S.u.t, t * .001); gl.uniform1f(S.u.asp, cw / ch);
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+    this.cur = 1 - this.cur;
+    this.overlayFrame({ W, H, sw, sh, ox, oy, bx: m.sx, by: m.sy, rad: .045 + Math.min(sp * 1.4, .05), str, decay, t: t * .001, asp: cw / ch, now, ink: this.hex(props.ink), multi: props.multicolor === false ? 0 : 1 });
+
+    gl.bindFramebuffer(gl.FRAMEBUFFER, null); gl.viewport(0, 0, W, H);
+    const D = this.dispP; gl.useProgram(D.p);
+    gl.bindTexture(gl.TEXTURE_2D, dst.t); gl.uniform1i(D.u.s, 0);
+    const c = this.hex(props.ink);
+    gl.uniform3f(D.u.ink, c[0], c[1], c[2]);
+    gl.uniform1f(D.u.multi, props.multicolor === false ? 0 : 1);
+    const ready = this.photo ? 1 : 0;
+    gl.uniform1f(D.u.ready, ready);
+    if (ready) {
+      if (!this.opaque) { cv.style.mixBlendMode = 'normal'; this.opaque = true; }
+      gl.activeTexture(gl.TEXTURE1); gl.bindTexture(gl.TEXTURE_2D, this.photo); gl.uniform1i(D.u.photo, 1);
+      const A = cw / ch, B = this.iw / this.ih;
+      const sx = Math.min(1, A / B), sy = Math.min(1, B / A);
+      gl.uniform2f(D.u.isc, sx, sy);
+      gl.uniform2f(D.u.ioff, .5 + this.par.x * .02, 1 - (sy / 2 + .56 * (1 - sy)) + this.par.y * .015);
+      const e = Math.min(1, (now - this.photoAt) / 2600);
+      gl.uniform1f(D.u.zoom, 1.06 + .24 * Math.pow(1 - e, 3));
+      gl.uniform1f(D.u.dist, props.distortion ?? .07);
+      gl.activeTexture(gl.TEXTURE0);
+    }
+    gl.uniform2f(D.u.px, 1 / sw, 1 / sh); gl.uniform1f(D.u.t, t * .001);
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+  }
+
+  renderVals() {
+    return {
+      accent: this.props.accent ?? '#C0281E',
+      gold: this.props.gold ?? '#C9A45C',
+      titleBlend: this.props.titleBlend ?? 'difference',
+      canvasDisplay: this.props.fluid === false ? 'none' : 'block',
+      setCanvas: this.setCanvas,
+      setHero: this.setHero,
+      setImg: this.setImg,
+      setTitle: this.setTitle,
+      setOverlay: this.setOverlay,
+      onMove: this.onMove,
+      pressOpen: !!(this.state && this.state.press),
+      openPress: this.openPress,
+      closePress: this.closePress,
+      stopPress: this.stopPress
+    };
+  }
+}
+(function () {
+  var c = new Component();
+  var $ = function (id) { return document.getElementById(id); };
+  var hero = $('ht-hero'), modal = $('ht-press'), opener = $('ht-press-open'), closer = $('ht-press-close');
+  c.onState = function () {
+    var open = !!c.state.press;
+    modal.hidden = !open;
+    if (open) closer.focus(); else opener.focus();
+  };
+  c.setHero(hero); c.setImg($('ht-img')); c.setTitle($('ht-title'));
+  c.setOverlay($('ht-overlay')); c.setCanvas($('ht-canvas'));
+  hero.addEventListener('pointermove', c.onMove);
+  hero.addEventListener('pointerdown', c.onMove);
+  opener.addEventListener('click', c.openPress);
+  modal.addEventListener('click', c.closePress);
+  closer.addEventListener('click', c.closePress);
+  $('ht-press-panel').addEventListener('click', c.stopPress);
+  modal.addEventListener('keydown', function (e) { if (e.key === 'Escape') c.closePress(e); });
+  c.componentDidMount();
+})();
+</script>
+</body>
+</html>
