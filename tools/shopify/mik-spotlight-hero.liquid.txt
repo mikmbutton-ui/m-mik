@@ -1,0 +1,171 @@
+{%- comment -%}
+  MIK Spotlight Hero
+  A dark first screen where only the area under the cursor (or finger)
+  reveals the buttoncover in full colour. Settings are editable in the
+  theme editor. Added 2026-11.
+{%- endcomment -%}
+{%- liquid
+  if section.settings.image != blank
+    assign hero_src = section.settings.image | image_url: width: 2400
+  else
+    assign hero_src = section.settings.image_url
+  endif
+-%}
+<section class="mik-spot" id="MikSpot-{{ section.id }}"
+  data-spot-x="{{ section.settings.spot_x }}"
+  data-spot-y="{{ section.settings.spot_y }}"
+  data-radius="{{ section.settings.radius }}"
+  style="--mik-accent: {{ section.settings.accent }}; --mik-pos: {{ section.settings.focus_x }}% {{ section.settings.focus_y }}%;">
+  <img class="mik-spot__base" src="{{ hero_src }}" alt="" aria-hidden="true" width="2200" height="1375" fetchpriority="high">
+  <img class="mik-spot__lit" src="{{ hero_src }}" alt="{{ section.settings.image_alt | escape }}" width="2200" height="1375">
+  <div class="mik-spot__shade" aria-hidden="true"></div>
+
+  <div class="mik-spot__copy">
+    {%- if section.settings.kicker != blank -%}
+      <p class="mik-spot__kicker">
+        <svg viewBox="40 200 770 400" width="38" height="20" aria-hidden="true"><g fill="currentColor"><polygon points="54.81 212.3 425.19 424.25 281.15 553.89 54.81 212.3"/><polygon points="795.59 212.3 425.19 424.25 569.23 553.89 795.59 212.3"/><circle cx="425.2" cy="575.81" r="23.27"/></g></svg>
+        <span>{{ section.settings.kicker }}</span>
+      </p>
+    {%- endif -%}
+    <h2 class="mik-spot__lines">
+      {%- if section.settings.line_1 != blank -%}<span class="mik-spot__line">{{ section.settings.line_1 }}</span>{%- endif -%}
+      {%- if section.settings.line_2 != blank -%}<span class="mik-spot__line mik-spot__line--gap">{{ section.settings.line_2 }}</span>{%- endif -%}
+      {%- if section.settings.line_3 != blank -%}<span class="mik-spot__line">{{ section.settings.line_3 }}</span>{%- endif -%}
+      {%- if section.settings.line_4 != blank -%}<span class="mik-spot__line mik-spot__line--accent">{{ section.settings.line_4 }}</span>{%- endif -%}
+    </h2>
+    <div class="mik-spot__ctas">
+      {%- if section.settings.button_label != blank -%}
+        <a class="mik-spot__btn" href="{{ section.settings.button_link | default: routes.all_products_collection_url }}">{{ section.settings.button_label }}</a>
+      {%- endif -%}
+      {%- if section.settings.link_label != blank -%}
+        <a class="mik-spot__link" href="{{ section.settings.link_url | default: '/pages/founder-company' }}">{{ section.settings.link_label }}</a>
+      {%- endif -%}
+    </div>
+  </div>
+
+  <div class="mik-spot__foot">
+    <span>{{ section.settings.foot_left }}</span>
+    <span class="mik-spot__hint">{{ section.settings.hint }}</span>
+    <span>{{ section.settings.foot_right }}</span>
+  </div>
+</section>
+
+<style>
+  #MikSpot-{{ section.id }}{position:relative;width:100%;height:{{ section.settings.height }}vh;min-height:560px;max-height:1100px;overflow:hidden;background:#050505;color:#EDEBE6;cursor:crosshair;isolation:isolate;--mik-x:36%;--mik-y:38%;--mik-r:{{ section.settings.radius }}px}
+  #MikSpot-{{ section.id }} .mik-spot__base,#MikSpot-{{ section.id }} .mik-spot__lit{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:var(--mik-pos);max-width:none}
+  #MikSpot-{{ section.id }} .mik-spot__base{filter:grayscale(1) brightness(.16) contrast(1.15)}
+  #MikSpot-{{ section.id }} .mik-spot__lit{filter:contrast(1.06) saturate(1.08);-webkit-mask-image:radial-gradient(circle var(--mik-r) at var(--mik-x) var(--mik-y),#000 0%,#000 38%,rgba(0,0,0,.35) 70%,transparent 100%);mask-image:radial-gradient(circle var(--mik-r) at var(--mik-x) var(--mik-y),#000 0%,#000 38%,rgba(0,0,0,.35) 70%,transparent 100%)}
+  #MikSpot-{{ section.id }} .mik-spot__shade{position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(5,5,5,0) 42%,rgba(5,5,5,.8) 80%),linear-gradient(0deg,rgba(5,5,5,.7) 0%,rgba(5,5,5,0) 26%)}
+  #MikSpot-{{ section.id }} .mik-spot__copy{position:absolute;right:5%;top:50%;transform:translateY(-50%);width:min(580px,42%);z-index:1}
+  #MikSpot-{{ section.id }} .mik-spot__kicker{display:flex;align-items:center;gap:14px;margin:0 0 30px;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:#A9A49B}
+  #MikSpot-{{ section.id }} .mik-spot__kicker svg{color:#EDEBE6;flex:none}
+  #MikSpot-{{ section.id }} .mik-spot__lines{margin:0;font-weight:300;font-size:clamp(28px,2.9vw,44px);line-height:1.14;letter-spacing:-.01em;color:#EDEBE6}
+  #MikSpot-{{ section.id }} .mik-spot__lines strong,#MikSpot-{{ section.id }} .mik-spot__lines b{font-weight:600}
+  #MikSpot-{{ section.id }} .mik-spot__line{display:block;animation:mikSpotIn 1.4s cubic-bezier(.16,1,.3,1) both}
+  #MikSpot-{{ section.id }} .mik-spot__line:nth-child(2){animation-delay:.15s}
+  #MikSpot-{{ section.id }} .mik-spot__line:nth-child(3){animation-delay:.3s}
+  #MikSpot-{{ section.id }} .mik-spot__line:nth-child(4){animation-delay:.45s}
+  #MikSpot-{{ section.id }} .mik-spot__line--gap{margin-top:14px}
+  #MikSpot-{{ section.id }} .mik-spot__line--accent strong:last-child,#MikSpot-{{ section.id }} .mik-spot__line--accent b:last-child{color:var(--mik-accent)}
+  #MikSpot-{{ section.id }} .mik-spot__ctas{display:flex;flex-wrap:wrap;align-items:center;gap:14px 26px;margin-top:42px;animation:mikSpotIn 1.4s cubic-bezier(.16,1,.3,1) .6s both}
+  #MikSpot-{{ section.id }} .mik-spot__btn{display:inline-flex;align-items:center;min-height:48px;padding:0 26px;background:#EDEBE6;color:#0B0B0B;font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;text-decoration:none}
+  #MikSpot-{{ section.id }} .mik-spot__btn:hover{background:#FFFFFF}
+  #MikSpot-{{ section.id }} .mik-spot__link{display:inline-flex;align-items:center;min-height:48px;color:#EDEBE6;border-bottom:1px solid rgba(237,235,230,.6);font-size:13px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;text-decoration:none}
+  #MikSpot-{{ section.id }} .mik-spot__foot{position:absolute;left:3%;right:3%;bottom:28px;z-index:1;display:flex;justify-content:space-between;gap:16px;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#A9A49B}
+  #MikSpot-{{ section.id }} .mik-spot__hint{animation:mikSpotBreath 2.6s ease-in-out infinite}
+  @keyframes mikSpotIn{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+  @keyframes mikSpotBreath{0%,100%{opacity:.5}50%{opacity:1}}
+  @media (max-width:749px){
+    #MikSpot-{{ section.id }}{height:auto;min-height:0;max-height:none;display:flex;flex-direction:column;cursor:default}
+    #MikSpot-{{ section.id }} .mik-spot__base,#MikSpot-{{ section.id }} .mik-spot__lit{height:62vh;min-height:380px;bottom:auto}
+    #MikSpot-{{ section.id }} .mik-spot__shade{height:62vh;min-height:380px;bottom:auto;background:linear-gradient(0deg,#050505 0%,rgba(5,5,5,0) 40%)}
+    #MikSpot-{{ section.id }} .mik-spot__copy{position:relative;right:auto;top:auto;transform:none;width:auto;margin-top:calc(max(380px,62vh) - 110px);padding:0 20px 24px}
+    #MikSpot-{{ section.id }} .mik-spot__kicker{margin-bottom:18px;font-size:11px}
+    #MikSpot-{{ section.id }} .mik-spot__lines{font-size:28px}
+    #MikSpot-{{ section.id }} .mik-spot__ctas{margin-top:28px}
+    #MikSpot-{{ section.id }} .mik-spot__foot{position:relative;left:auto;right:auto;bottom:auto;padding:0 20px 28px;flex-wrap:wrap;font-size:10px}
+    #MikSpot-{{ section.id }} .mik-spot__hint{display:none}
+  }
+  @media (prefers-reduced-motion:reduce){
+    #MikSpot-{{ section.id }} .mik-spot__line,#MikSpot-{{ section.id }} .mik-spot__ctas,#MikSpot-{{ section.id }} .mik-spot__hint{animation:none}
+  }
+</style>
+
+<script>
+  (function () {
+    var root = document.getElementById('MikSpot-{{ section.id }}');
+    if (!root || root.dataset.ready) return;
+    root.dataset.ready = '1';
+    var img = root.querySelector('.mik-spot__lit');
+    var fx = parseFloat(root.dataset.spotX) / 100, fy = parseFloat(root.dataset.spotY) / 100;
+    var cur = null, target = null, raf = 0;
+    var still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function home() {
+      var r = img.getBoundingClientRect(), box = root.getBoundingClientRect();
+      var iw = img.naturalWidth || 2200, ih = img.naturalHeight || 1375;
+      var s = Math.max(r.width / iw, r.height / ih);
+      var pos = getComputedStyle(img).objectPosition.split(' ').map(parseFloat);
+      var ox = (r.width - iw * s) * (pos[0] / 100), oy = (r.height - ih * s) * (pos[1] / 100);
+      return { x: r.left - box.left + ox + iw * s * fx, y: r.top - box.top + oy + ih * s * fy };
+    }
+    function paint(p) {
+      root.style.setProperty('--mik-x', p.x.toFixed(1) + 'px');
+      root.style.setProperty('--mik-y', p.y.toFixed(1) + 'px');
+    }
+    function tick() {
+      var t = target || home();
+      if (!cur || still) cur = { x: t.x, y: t.y };
+      else { cur.x += (t.x - cur.x) * 0.14; cur.y += (t.y - cur.y) * 0.14; }
+      paint(cur);
+      raf = (Math.abs(t.x - cur.x) + Math.abs(t.y - cur.y) > 0.5) ? requestAnimationFrame(tick) : 0;
+    }
+    function kick() { if (!raf) raf = requestAnimationFrame(tick); }
+    root.addEventListener('pointermove', function (e) {
+      var b = root.getBoundingClientRect();
+      target = { x: e.clientX - b.left, y: e.clientY - b.top };
+      kick();
+    });
+    root.addEventListener('pointerleave', function () { target = null; kick(); });
+    window.addEventListener('resize', function () { if (!target) { cur = null; kick(); } });
+    if (img.complete) kick(); else img.addEventListener('load', function () { cur = null; kick(); });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "MIK Spotlight Hero",
+  "tag": "div",
+  "class": "section-mik-spotlight",
+  "settings": [
+    { "type": "header", "content": "Image" },
+    { "type": "image_picker", "id": "image", "label": "Hero image" },
+    { "type": "text", "id": "image_url", "label": "Fallback image URL", "default": "https://m-mik.com/assets/global/hero-collar-lapis.jpg", "info": "Used when no image is chosen above." },
+    { "type": "text", "id": "image_alt", "label": "Image description", "default": "A gold and lapis MIK buttoncover on the collar of a pleated white shirt" },
+    { "type": "range", "id": "focus_x", "label": "Image focus, horizontal", "min": 0, "max": 100, "step": 1, "unit": "%", "default": 30 },
+    { "type": "range", "id": "focus_y", "label": "Image focus, vertical", "min": 0, "max": 100, "step": 1, "unit": "%", "default": 40 },
+    { "type": "header", "content": "Spotlight" },
+    { "type": "range", "id": "spot_x", "label": "Resting light, horizontal (on the image)", "min": 0, "max": 100, "step": 1, "unit": "%", "default": 36 },
+    { "type": "range", "id": "spot_y", "label": "Resting light, vertical (on the image)", "min": 0, "max": 100, "step": 1, "unit": "%", "default": 38 },
+    { "type": "range", "id": "radius", "label": "Light size", "min": 160, "max": 520, "step": 10, "unit": "px", "default": 300 },
+    { "type": "range", "id": "height", "label": "Height on desktop", "min": 60, "max": 100, "step": 5, "unit": "vh", "default": 90 },
+    { "type": "header", "content": "Text" },
+    { "type": "text", "id": "kicker", "label": "Small heading", "default": "The Buttoncover Authority" },
+    { "type": "inline_richtext", "id": "line_1", "label": "Line 1", "default": "<strong>MIK</strong> created a category that did not exist." },
+    { "type": "inline_richtext", "id": "line_2", "label": "Line 2", "default": "<strong>Develop Or</strong> is our philosophy." },
+    { "type": "inline_richtext", "id": "line_3", "label": "Line 3", "default": "We build structure," },
+    { "type": "inline_richtext", "id": "line_4", "label": "Line 4 (last bold word in accent colour)", "default": "and what remains is <strong>Or</strong>." },
+    { "type": "color", "id": "accent", "label": "Accent colour", "default": "#D9B56A" },
+    { "type": "header", "content": "Buttons" },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Shop the Buttoncover" },
+    { "type": "url", "id": "button_link", "label": "Button link" },
+    { "type": "text", "id": "link_label", "label": "Text link label", "default": "Our Story" },
+    { "type": "url", "id": "link_url", "label": "Text link" },
+    { "type": "header", "content": "Bottom line" },
+    { "type": "text", "id": "foot_left", "label": "Left", "default": "Since 2008 · Seoul" },
+    { "type": "text", "id": "hint", "label": "Centre hint (desktop)", "default": "Move to light the piece" },
+    { "type": "text", "id": "foot_right", "label": "Right", "default": "Patented inner clip structure" }
+  ],
+  "presets": [ { "name": "MIK Spotlight Hero" } ]
+}
+{% endschema %}
