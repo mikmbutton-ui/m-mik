@@ -87,8 +87,11 @@ html[lang=en] .lead{font-family:'Archivo',sans-serif}
 .line-card h3{margin:12px 0 12px;font-stretch:112%;font-weight:300;font-size:clamp(36px,3.4vw,52px);line-height:1}
 .line-card p{max-width:440px;font-size:14px;line-height:1.85;color:#e6e3dc;word-break:keep-all}
 .line-card .go{margin-top:20px;font-size:12px;letter-spacing:.18em;text-transform:uppercase}
-.mor{background:#1c1b19}
-.mor:after{display:none}
+.mor{background:#000}
+.mor img{filter:brightness(.3) saturate(.85);object-position:50% 42%;transition:transform 1.4s var(--ease),filter 1s ease}
+.mor:hover img,.mor:focus-visible img{filter:brightness(.78) saturate(1.05)}
+.mor .cat{color:#d9b56a}
+.mor .mor-tag{margin:-2px 0 12px;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:20px;line-height:1.3;color:#d9b56a}
 
 footer{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px 24px;padding:20px var(--pad) calc(26px + env(safe-area-inset-bottom));border-top:1px solid var(--line);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
 
@@ -214,12 +217,14 @@ footer{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px 24px;p
 <p data-ko="한국의 헤리티지를 MIK의 감각으로 해석합니다. 전통의 깊이와 현대적 미감이 만나는 아트 주얼리 라인." data-en="Korea’s heritage, interpreted through MIK’s touch. An art jewelry line where the depth of tradition meets modern aesthetics.">한국의 헤리티지를 MIK의 감각으로 해석합니다. 전통의 깊이와 현대적 미감이 만나는 아트 주얼리 라인.</p>
 <span class="go" data-ko="Heritouch 들어가기 →" data-en="Enter Heritouch →">Heritouch 들어가기 →</span>
 </a>
-<div class="line-card mor reveal">
-<span class="cat">High-end jewelry line</span>
+<a class="line-card mor reveal" href="mor/ego/">
+<img src="assets/mor/ego-tall.jpg" alt="Gold mask seen through the words What we hide. What we reveal." loading="lazy">
+<span class="cat">M’Or by LIMDONGWOOK</span>
 <h3>M’Or</h3>
-<p data-ko="소재와 세공, 예술적 표현을 심화하는 MIK의 하이엔드 주얼리 라인. 컬렉션은 준비되는 대로 소개합니다." data-en="MIK’s high-end jewelry line, exploring material, craftsmanship, and artistic expression. Collection details will follow.">소재와 세공, 예술적 표현을 심화하는 MIK의 하이엔드 주얼리 라인. 컬렉션은 준비되는 대로 소개합니다.</p>
-<span class="go" data-ko="컬렉션 준비 중" data-en="Collection in development">컬렉션 준비 중</span>
-</div>
+<p class="mor-tag">Beyond MIK, Towards More.</p>
+<p data-ko="MIK을 상징하는 ‘M’과 금을 뜻하는 프랑스어 ‘OR’, 그리고 ‘MORE’. MIK의 구조 기술과 디자인 철학 위에서 디렉터 임동욱이 전개하는 하이엔드 주얼리 브랜드입니다." data-en="‘M’ for MIK, ‘OR’ for gold in French, and the promise of ‘more’. A high-end jewelry brand led by director Lim Dong-Wook, built on MIK’s structural craft and design philosophy.">MIK을 상징하는 ‘M’과 금을 뜻하는 프랑스어 ‘OR’, 그리고 ‘MORE’. MIK의 구조 기술과 디자인 철학 위에서 디렉터 임동욱이 전개하는 하이엔드 주얼리 브랜드입니다.</p>
+<span class="go" data-ko="EGO · Alter Ego 01 보기 →" data-en="Enter EGO · Alter Ego 01 →">EGO · Alter Ego 01 보기 →</span>
+</a>
 </div>
 </section>
 </main>
